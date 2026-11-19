@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Smart School</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+<%- include ("_header.ejs") %>
+
+<main class="contact-page">
+    <div class="contact-intro">
+        <p class="eyebrow">Get in touch</p>
+        <h2>Contact Us</h2>
+        <p>Send us a message and the Smart School team will get back to you.</p>
+    </div>
+
+    <section class="contact-details" aria-label="School contact details">
+        <article>
+            <span class="contact-detail-icon">EMAIL</span>
+            <h3>Email the school</h3>
+            <a href="mailto:bright future school@gmail.com">bright future school@gmail.com</a>
+            <p>For admissions, fees, results, and general questions.</p>
+        </article>
+        <article>
+            <span class="contact-detail-icon">CALL</span>
+            <h3>Call the office</h3>
+            <a href="tel:+254795690162">+254 795 690 162</a>
+            <p>Monday to Friday, 8:00 AM to 4:30 PM.</p>
+        </article>
+        <article>
+            <span class="contact-detail-icon">VISIT</span>
+            <h3>Visit the school</h3>
+            <p>Bright Future School<br>School Road, Eldoret</p>
+            <p>Reception can help with any office request.</p>
+        </article>
+    </section>
+
+    <form class="contact-form" action="/contact" method="POST">
+
+        <label for="name">Name</label>
+        <input
+            type="text"
+            id="name"
+            name="name"
+            required
+        >
+
+        <label for="email">Email</label>
+        <input
+            type="email"
+            id="email"
+            name="email"
+            required
+        >
+
+        <label for="message">Message</label>
+        <textarea
+            id="message"
+            name="message"
+            rows="6"
+            required
+        ></textarea>
+
+        <button type="submit">Send Message</button>
+
+    </form>
+</main>
+
+<footer>
+    <p>&copy; 2026 Smart School. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

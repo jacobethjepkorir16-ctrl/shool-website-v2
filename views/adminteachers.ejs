@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teachers - Smart School</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include("_header.ejs") %>
+
+    <main class="dashboard-page">
+        <div class="dashboard-heading">
+            <div>
+                <p class="eyebrow">Administration</p>
+                <h2>Teachers</h2>
+                <p>View teacher accounts registered in the school system.</p>
+            </div>
+            <a class="dashboard-logout" href="/dashboard">Back to dashboard</a>
+        </div>
+
+        <form action="/addTeacher" method="POST">
+            <h3>Add a teacher</h3>
+            <label for="teacher-name">Teacher name</label>
+            <input id="teacher-name" type="text" name="name" required>
+
+            <label for="teacher-email">Teacher email</label>
+            <input id="teacher-email" type="email" name="email" required>
+
+            <label for="teacher-password">Temporary password</label>
+            <input id="teacher-password" type="password" name="password" required>
+
+            <input type="hidden" name="role" value="teacher">
+            <button type="submit">Add teacher</button>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% teachers.forEach(teacher => { %>
+                    <tr>
+                        <td><%= teacher.name %></td>
+                        <td><%= teacher.email %></td>
+                        <td><%= teacher.role %></td>
+                    </tr>
+                <% }); %>
+                <% if (teachers.length === 0) { %>
+                    <tr><td colspan="3">No teachers have been added yet.</td></tr>
+                <% } %>
+            </tbody>
+        </table>
+    </main>
+
+    <footer><p>&copy; 2026 Smart School. All Rights Reserved.</p></footer>
+</body>
+</html>

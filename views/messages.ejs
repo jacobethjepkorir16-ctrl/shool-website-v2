@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - Smart School</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include("_header.ejs") %>
+
+    <main class="dashboard-page">
+        <div class="dashboard-heading">
+            <div>
+                <p class="eyebrow">Administration</p>
+                <h2>Message Center</h2>
+                <p>Receive messages from the contact form and send replies.</p>
+            </div>
+            <a class="dashboard-logout" href="/dashboard">Back to dashboard</a>
+        </div>
+
+        <form action="/admin/messages/send" method="POST">
+            <h3>Send a message</h3>
+            <label for="recipient-name">Recipient name</label>
+            <input id="recipient-name" type="text" name="name" required>
+
+            <label for="recipient-email">Recipient email</label>
+            <input id="recipient-email" type="email" name="email" required>
+
+            <label for="outgoing-message">Message</label>
+            <textarea id="outgoing-message" name="message" rows="5" required></textarea>
+            <button type="submit">Send message</button>
+        </form>
+
+        <h3 class="record-heading">Received messages</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <th>Reply</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% messages.forEach(message => { %>
+                    <tr>
+                        <td><%= message.name %></td>
+                        <td><%= message.email %></td>
+                        <td><%= message.message %></td>
+                        <td>
+                            <form action="/reply" method="POST">
+                                <input type="hidden" name="message_id" value="<%= message.message_id %>">
+                                <textarea name="reply" rows="3" placeholder="Write a reply..." required><%= message.reply || "" %></textarea>
+                                <button type="submit">Save reply</button>
+                            </form>
+                        </td>
+                        <td><%= message.created_at %></td>
+                    </tr>
+                <% }); %>
+                <% if (messages.length === 0) { %>
+                    <tr><td colspan="5">No messages have been received yet.</td></tr>
+                <% } %>
+            </tbody>
+        </table>
+    </main>
+
+    <footer><p>&copy; 2026 Smart School. All Rights Reserved.</p></footer>
+</body>
+</html>

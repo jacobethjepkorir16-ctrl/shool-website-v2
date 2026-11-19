@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Smart School</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include("_header.ejs") %>
+
+    <main class="dashboard-page">
+        <div class="dashboard-heading">
+            <div>
+                <p class="eyebrow">Administration</p>
+                <h2>Admin Dashboard</h2>
+                <p>Welcome, <%= user.name || user.email %>. Manage the school from one place.</p>
+            </div>
+            <a class="dashboard-logout" href="/logout">Log out</a>
+        </div>
+
+        <div class="dashboard-cards">
+            <article class="dashboard-card">
+                <span class="card-icon">01</span>
+                <h3>Students</h3>
+                <p>View enrolled students and add new records.</p>
+                <form action="/addStudent" method="POST">
+                    <input type="text" name="student_id" placeholder="Student ID" required>
+                    <input type="text" name="student_name" placeholder="Student name" required>
+                    <select name="classroom_id" required>
+                        <option value="">Choose classroom</option>
+                        <% (typeof classrooms !== "undefined" ? classrooms : []).forEach(classroom => { %>
+                            <option value="<%= classroom.classroom_id %>"><%= classroom.classroom_name %></option>
+                        <% }); %>
+                    </select>
+                    <button type="submit">Add student</button>
+                </form>
+                <a href="/students">View students</a>
+                <a href="/admin/students">Complete student records</a>
+            </article>
+            <article class="dashboard-card">
+                <span class="card-icon">02</span>
+                <h3>Staff accounts</h3>
+                <p>Create an account and assign its school role.</p>
+                <form action="/addTeacher" method="POST">
+                    <input type="text" name="name" placeholder="Full name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Temporary password" required>
+                    <select name="role" required>
+                        <option value="">Choose role</option>
+                        <option value="teacher">Teacher</option>
+                        <option value="principal">Principal</option>
+                        <option value="student">Student</option>
+                        <option value="admin">Administrator</option>
+                    </select>
+                    <button type="submit">Add account</button>
+                </form>
+            </article>
+            <article class="dashboard-card">
+                <span class="card-icon">03</span>
+                <h3>Subjects</h3>
+                <p>Add and review the subjects available at the school.</p>
+                <form action="/addSubject" method="POST">
+                    <input type="text" name="subject_id" placeholder="Subject ID" required>
+                    <input type="text" name="subject_name" placeholder="Subject name" required>
+                    <button type="submit">Add subject</button>
+                </form>
+                <a href="/subjects">View subjects</a>
+            </article>
+            <article class="dashboard-card">
+                <span class="card-icon">04</span>
+                <h3>Classrooms</h3>
+                <p>Create a classroom before assigning students to it.</p>
+                <form action="/addClassroom" method="POST">
+                    <input type="text" name="classroom_id" placeholder="Classroom ID" required>
+                    <input type="text" name="classroom_name" placeholder="Classroom name" required>
+                    <button type="submit">Add classroom</button>
+                </form>
+            </article>
+            <article class="dashboard-card">
+                <span class="card-icon">05</span>
+                <h3>Results</h3>
+                <p>Record and review marks for every student.</p>
+                <a href="/admin/marks">Record marks</a>
+                <a href="/results">View results</a>
+            </article>
+            <article class="dashboard-card">
+                <span class="card-icon">06</span>
+                <h3>Messages</h3>
+                <p>Send, receive, and reply to school messages.</p>
+                <a href="/messages">Open messages</a>
+            </article>
+            <article class="dashboard-card">
+                <span class="card-icon">07</span>
+                <h3>Teaching assignments</h3>
+                <p>Assign one class teacher and subject teachers for each class.</p>
+                <a href="/admin/assignments">Manage assignments</a>
+            </article>
+        </div>
+    </main>
+
+    <footer><p>&copy; 2026 Smart School. All Rights Reserved.</p></footer>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fee Structure - Smart School</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <%- include ("_header.ejs") %>
+
+<main class="fees-page">
+
+    <p class="eyebrow">Parent information</p>
+    <h2>School Fee Structure</h2>
+
+    <p>Review the current term fees and follow the payment steps below.</p>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Class</th>
+                <th>Term</th>
+                <th>Tuition Fee (KSh)</th>
+                <th>Activity Fee (KSh)</th>
+                <th>Total (KSh)</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>Form 1</td>
+                <td>Term 1</td>
+                <td>20,000</td>
+                <td>2,000</td>
+                <td>22,000</td>
+            </tr>
+
+            <tr>
+                <td>Form 2</td>
+                <td>Term 1</td>
+                <td>20,000</td>
+                <td>2,000</td>
+                <td>22,000</td>
+            </tr>
+
+            <tr>
+                <td>Form 3</td>
+                <td>Term 1</td>
+                <td>22,000</td>
+                <td>2,000</td>
+                <td>24,000</td>
+            </tr>
+
+            <tr>
+                <td>Form 4</td>
+                <td>Term 1</td>
+                <td>22,000</td>
+                <td>2,000</td>
+                <td>24,000</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <section class="payment-guide">
+        <div>
+            <p class="eyebrow">How to pay</p>
+            <h3>Complete your payment in three steps</h3>
+        </div>
+
+        <div class="payment-steps">
+            <article>
+                <span>01</span>
+                <h4>Confirm the amount</h4>
+                <p>Use your child's class and the total shown above. Contact the office if the account has a balance.</p>
+            </article>
+            <article>
+                <span>02</span>
+                <h4>Choose a payment method</h4>
+                <p>Pay through the school's approved bank, mobile-money, or finance-office channel.</p>
+            </article>
+            <article>
+                <span>03</span>
+                <h4>Send the receipt</h4>
+                <p>Include the student's name and ID on the payment reference, then share the receipt with the office.</p>
+            </article>
+        </div>
+
+        <div class="payment-methods">
+            <article>
+                <h4>Bank transfer</h4>
+                <p><strong>Account:</strong> Add the school's official account details here.</p>
+                <p><strong>Reference:</strong> Student name and student ID.</p>
+            </article>
+            <article>
+                <h4>Mobile money</h4>
+                <p><strong>Paybill:</strong> 123456</p>
+                <p><strong>Account number:</strong> Student name</p>
+            </article>
+            <article>
+                <h4>Finance office</h4>
+                <p>Visit the school office during working hours and request an official receipt.</p>
+            </article>
+        </div>
+
+        <a class="hero-button" href="/contact">Ask the finance office</a>
+    </section>
+
+    <div class="fee-note">
+
+        <h3>Important Information</h3>
+
+        <p>
+            Fees should be paid before the beginning of each term.
+        </p>
+
+        <p>
+            Please contact the school administration for more information
+            about payments and additional charges.
+        </p>
+
+    </div>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 Smart School. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

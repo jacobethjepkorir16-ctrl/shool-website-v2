@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - Smart School</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+    <%- include ("_header.ejs") %>
+
+<main class="dashboard">
+
+    <h2>Admin Dashboard</h2>
+
+    <p>Manage the Smart School system from one place.</p>
+
+    <div class="dashboard-cards">
+
+        <div class="dashboard-card">
+            <h3>Students</h3>
+            <p id="studentCount">Loading...</p>
+            <a href="/students">View Students</a>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Subjects</h3>
+            <p id="subjectCount">Loading...</p>
+            <a href="/subjects">View Subjects</a>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Results</h3>
+            <p id="resultCount">Loading...</p>
+            <a href="/results">View Results</a>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Messages</h3>
+            <p id="messageCount">Loading...</p>
+            <a href="/messages">View Messages</a>
+        </div>
+
+    </div>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 Smart School. All Rights Reserved.</p>
+</footer>
+
+<script>
+
+fetch("/students")
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("studentCount").textContent =
+            data.length + " Students";
+    })
+    .catch(() => {
+        document.getElementById("studentCount").textContent =
+            "Unable to load";
+    });
+
+
+fetch("/subjects")
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("subjectCount").textContent =
+            data.length + " Subjects";
+    })
+    .catch(() => {
+        document.getElementById("subjectCount").textContent =
+            "Unable to load";
+    });
+
+
+fetch("/results")
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("resultCount").textContent =
+            data.length + " Results";
+    })
+    .catch(() => {
+        document.getElementById("resultCount").textContent =
+            "Unable to load";
+    });
+
+
+fetch("/messages")
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("messageCount").textContent =
+            data.length + " Messages";
+    })
+    .catch(() => {
+        document.getElementById("messageCount").textContent =
+            "Unable to load";
+    });
+
+</script>
+
+</body>
+</html>

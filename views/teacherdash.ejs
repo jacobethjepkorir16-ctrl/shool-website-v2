@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Teacher Dashboard - Smart School</title>
+	<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+	<%- include("_header.ejs") %>
+
+	<main class="dashboard-page">
+		<div class="dashboard-heading">
+			<div>
+				<p class="eyebrow">Teaching workspace</p>
+				<h2>Teacher Dashboard</h2>
+				<p>Welcome, <%= user.name || user.email %>. Access your classroom resources.</p>
+			</div>
+			<a class="dashboard-logout" href="/logout">Log out</a>
+		</div>
+
+		<div class="dashboard-cards">
+			<article class="dashboard-card">
+				<span class="card-icon">01</span>
+				<h3>Students</h3>
+				<p>Check the student register and classroom details.</p>
+				<a href="/students">View students</a>
+			</article>
+			<article class="dashboard-card">
+				<span class="card-icon">02</span>
+				<h3>Subjects</h3>
+				<p>Review the subjects available for your lessons.</p>
+				<a href="/subjects">View subjects</a>
+			</article>
+			<article class="dashboard-card">
+				<span class="card-icon">03</span>
+				<h3>Results</h3>
+				<p>Review marks and follow academic performance.</p>
+				<a href="/results">View results</a>
+			</article>
+			<article class="dashboard-card">
+				<span class="card-icon">04</span>
+				<h3>School messages</h3>
+				<p>Stay informed about school communication.</p>
+				<a href="/messages">Open messages</a>
+			</article>
+		</div>
+	</main>
+
+	<footer><p>&copy; 2026 Smart School. All Rights Reserved.</p></footer>
+</body>
+</html>

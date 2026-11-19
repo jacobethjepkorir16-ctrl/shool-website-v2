@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - Smart School</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<%- include ("_header.ejs") %>
+
+<main class="results-page">
+
+    <h2>Student Results</h2>
+    <p>
+        <% if (user.role === "student") { %>
+            Your marks and academic performance.
+        <% } else if (user.role === "teacher") { %>
+            Marks for your assigned classrooms.
+        <% } else { %>
+            View student marks and academic performance.
+        <% } %>
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Mark ID</th>
+                <th>Student ID</th>
+                <th>Subject</th>
+                <th>Marks</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% results.forEach(result => { %>
+                <tr>
+                    <td><%= result.mark_id %></td>
+                    <td><%= result.student_id %></td>
+                    <td><%= result.subject_name || result.subject_id %></td>
+                    <td><%= result.marks %></td>
+                </tr>
+            <% }); %>
+            <% if (results.length === 0) { %>
+                <tr><td colspan="4">No results have been recorded yet.</td></tr>
+            <% } %>
+        </tbody>
+    </table>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 Smart School. All Rights Reserved.</p>
+</footer>

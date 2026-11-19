@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teaching Assignments - Smart School</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include("_header.ejs") %>
+
+    <main class="dashboard-page">
+        <div class="dashboard-heading">
+            <div>
+                <p class="eyebrow">Administration</p>
+                <h2>Teaching Assignments</h2>
+                <p>Each class has one class teacher. Teachers may teach multiple subjects.</p>
+            </div>
+            <a class="dashboard-logout" href="/dashboard">Back to dashboard</a>
+        </div>
+
+        <section class="dashboard-cards">
+            <article class="dashboard-card">
+                <span class="card-icon">CLASS TEACHER</span>
+                <h3>Assign class teacher</h3>
+                <p>Assigning the same class again replaces its current class teacher.</p>
+                <form action="/admin/assign-class-teacher" method="POST">
+                    <label for="class-teacher-class">Classroom</label>
+                    <select id="class-teacher-class" name="classroom_id" required>
+                        <option value="">Choose classroom</option>
+                        <% classrooms.forEach(classroom => { %>
+                            <option value="<%= classroom.classroom_id %>"><%= classroom.classroom_name %></option>
+                        <% }); %>
+                    </select>
+                    <label for="class-teacher-teacher">Teacher</label>
+                    <select id="class-teacher-teacher" name="teacher_id" required>
+                        <option value="">Choose teacher</option>
+                        <% teachers.forEach(teacher => { %>
+                            <option value="<%= teacher.id %>"><%= teacher.name %> - <%= teacher.email %></option>
+                        <% }); %>
+                    </select>
+                    <button type="submit">Save class teacher</button>
+                </form>
+            </article>
+
+            <article class="dashboard-card">
+                <span class="card-icon">SUBJECT TEACHER</span>
+                <h3>Assign a subject</h3>
+                <p>The same teacher can receive two or more subjects in one class.</p>
+                <form action="/admin/assign-subject-teacher" method="POST">
+                    <label for="subject-teacher-teacher">Teacher</label>
+                    <select id="subject-teacher-teacher" name="teacher_id" required>
+                        <option value="">Choose teacher</option>
+                        <% teachers.forEach(teacher => { %>
+                            <option value="<%= teacher.id %>"><%= teacher.name %></option>
+                        <% }); %>
+                    </select>
+                    <label for="subject-teacher-class">Classroom</label>
+                    <select id="subject-teacher-class" name="classroom_id" required>
+                        <option value="">Choose classroom</option>
+                        <% classrooms.forEach(classroom => { %>
+                            <option value="<%= classroom.classroom_id %>"><%= classroom.classroom_name %></option>
+                        <% }); %>
+                    </select>
+                    <label for="subject-teacher-subject">Subject</label>
+                    <select id="subject-teacher-subject" name="subject_id" required>
+                        <option value="">Choose subject</option>
+                        <% subjects.forEach(subject => { %>
+                            <option value="<%= subject.subject_id %>"><%= subject.subject_name %></option>
+                        <% }); %>
+                    </select>
+                    <button type="submit">Assign subject</button>
+                </form>
+            </article>
+        </section>
+
+        <h3 class="record-heading">Class teachers</h3>
+        <table>
+            <thead><tr><th>Classroom</th><th>Class teacher</th><th>Email</th></tr></thead>
+            <tbody>
+                <% classTeachers.forEach(assignment => { %>
+                    <tr><td><%= assignment.classroom_name %></td><td><%= assignment.teacher_name %></td><td>Assigned</td></tr>
+                <% }); %>
+                <% if (classTeachers.length === 0) { %><tr><td colspan="3">No class teachers assigned yet.</td></tr><% } %>
+            </tbody>
+        </table>
+
+        <h3 class="record-heading">Subject teachers</h3>
+        <table>
+            <thead><tr><th>Teacher</th><th>Classroom</th><th>Subject</th></tr></thead>
+            <tbody>
+                <% subjectTeachers.forEach(assignment => { %>
+                    <tr><td><%= assignment.teacher_name %></td><td><%= assignment.classroom_name %></td><td><%= assignment.subject_name %></td></tr>
+                <% }); %>
+                <% if (subjectTeachers.length === 0) { %><tr><td colspan="3">No subject assignments yet.</td></tr><% } %>
+            </tbody>
+        </table>
+    </main>
+
+    <footer><p>&copy; 2026 Smart School. All Rights Reserved.</p></footer>
+</body>
+</html>

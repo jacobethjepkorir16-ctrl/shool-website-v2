@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Record Marks - Smart School</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include("_header.ejs") %>
+
+    <main class="dashboard-page">
+        <div class="dashboard-heading">
+            <div>
+                <p class="eyebrow">Administration</p>
+                <h2>Record Student Marks</h2>
+                <p>Select a student and subject, then save the score out of 100.</p>
+            </div>
+            <a class="dashboard-logout" href="/dashboard">Back to dashboard</a>
+        </div>
+
+        <form action="/addMark" method="POST">
+            <h3>Enter a mark</h3>
+            <label for="mark-id">Mark ID</label>
+            <input id="mark-id" type="text" name="mark_id" required>
+
+            <label for="student-id">Student</label>
+            <select id="student-id" name="student_id" required>
+                <option value="">Choose student</option>
+                <% students.forEach(student => { %>
+                    <option value="<%= student.student_id %>"><%= student.student_name %> (ID: <%= student.student_id %>)</option>
+                <% }); %>
+            </select>
+
+            <label for="subject-id">Subject</label>
+            <select id="subject-id" name="subject_id" required>
+                <option value="">Choose subject</option>
+                <% subjects.forEach(subject => { %>
+                    <option value="<%= subject.subject_id %>"><%= subject.subject_name %></option>
+                <% }); %>
+            </select>
+
+            <label for="marks">Score</label>
+            <input id="marks" type="number" name="marks" min="0" max="100" step="1" required>
+            <button type="submit">Save mark</button>
+        </form>
+
+        <h3 class="record-heading">Recorded marks</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Mark ID</th>
+                    <th>Student</th>
+                    <th>Subject</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% marks.forEach(mark => { %>
+                    <tr>
+                        <td><%= mark.mark_id %></td>
+                        <td><%= mark.student_name || mark.student_id %></td>
+                        <td><%= mark.subject_name || mark.subject_id %></td>
+                        <td><%= mark.marks %></td>
+                    </tr>
+                <% }); %>
+                <% if (marks.length === 0) { %>
+                    <tr><td colspan="4">No marks have been recorded yet.</td></tr>
+                <% } %>
+            </tbody>
+        </table>
+    </main>
+
+    <footer><p>&copy; 2026 Smart School. All Rights Reserved.</p></footer>
+</body>
+</html>

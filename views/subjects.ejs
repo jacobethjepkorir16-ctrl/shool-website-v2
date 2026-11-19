@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subjects - Smart School</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<%- include ("_header.ejs") %>
+
+    <main class="subjects-page">
+        <h2>School Subjects</h2>
+        <p>These are some of the subjects offered at Smart School.</p>
+
+        <div class="subject-grid">
+            <% subjects.forEach(subject => { %>
+                <article class="subject-card">
+                    <h3><%= subject.subject_name %></h3>
+                    <p>Explore <%= subject.subject_name %> and develop your knowledge and skills.</p>
+                </article>
+            <% }); %>
+            <% if (subjects.length === 0) { %>
+                <p>No subjects have been added yet.</p>
+            <% } %>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Smart School. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Records - Smart School</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include("_header.ejs") %>
+
+    <main class="dashboard-page">
+        <div class="dashboard-heading">
+            <div>
+                <p class="eyebrow">Administration</p>
+                <h2>Complete Student Records</h2>
+                <p>Review enrolment, classroom placement, and academic marks.</p>
+            </div>
+            <a class="dashboard-logout" href="/dashboard">Back to dashboard</a>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Student name</th>
+                    <th>Classroom</th>
+                    <th>Marks recorded</th>
+                    <th>Record</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% students.forEach(student => { %>
+                    <% const studentMarks = marks.filter(mark => String(mark.student_id) === String(student.student_id)); %>
+                    <tr>
+                        <td><%= student.student_id %></td>
+                        <td><%= student.student_name %></td>
+                        <td><%= student.classroom_name || student.classroom_id || "Not assigned" %></td>
+                        <td><%= studentMarks.length %></td>
+                        <td><a href="/admin/students/<%= student.student_id %>">View complete record</a></td>
+                    </tr>
+                <% }); %>
+                <% if (students.length === 0) { %>
+                    <tr><td colspan="5">No students have been registered yet.</td></tr>
+                <% } %>
+            </tbody>
+        </table>
+    </main>
+
+    <footer><p>&copy; 2026 Smart School. All Rights Reserved.</p></footer>
+</body>
+</html>
